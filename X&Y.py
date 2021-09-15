@@ -4,7 +4,7 @@
 # Description: program to do simple X & Y coordinate calculations such as midpoint and distance between two points
 ######################################################################################################################
 
-#importing math for program calculations
+#importing math library for program calculations
 import math
 
 # the 2D point class
@@ -12,10 +12,9 @@ class Point:
 	
 	#class constructor with default values set at 0
 	def __init__(self, x=0, y=0):
-		self.x = x 
-		self.y = y
+		self.x = float(x) 
+		self.y = float(y)
 
-		
 	#acessor
 	@property
 	def x(self):
@@ -36,28 +35,24 @@ class Point:
 	def y(self, value):
 		self._y = value
 		
-
-	"""#function to retrive apporaiate coordinates in the needed mathematical expression
-	def Coordinate_Retriver(self, set1, set2):
-		x1, x2 = set1.x, set2.x
-		y1, y2 = set1.y, set2.y
-		return x1, y1, x2, y2"""
-
-
 	#class method to calculate midpoint
 	def midpt(set1, set2):
 	
+		#get necessary point data for calculations
 		x1, x2 = set1.x, set2.x
 		y1, y2 = set1.y, set2.y
 
 		#algorithm for the midpoint coordinates
 		midpointX, midpointY = (((x1 + x2) / 2), ((y1 + y2) / 2))
-		return(midpointX, midpointY)
 
+		#creating new Point object to in order for new object to use further distance method
+		new_obj = Point(midpointX, midpointY)
+		return new_obj
 
 	#class method to calculate distance between two points
 	def dist(set1, set2):
 
+		#get necessary point data for calculations
 		x1, x2 = set1.x, set2.x
 		y1, y2 = set1.y, set2.y
 
@@ -66,15 +61,12 @@ class Point:
 		party = ((y2-y1)**2)
 		to_be_squared = partx + party
 		distance = math.sqrt(to_be_squared)
-		return ("{}".format(distance))
+		return distance
 
-	#string
+	#magic function to dictate how the object will be printed out
 	def __str__(self):
-		return(" ({}, {})".format(self.x, self.y))
-
-
-
-
+		return(" ({},{})".format(self.x, self.y))
+		
 
 ##########################################################
 # ***DO NOT MODIFY OR REMOVE ANYTHING BELOW THIS POINT!***
