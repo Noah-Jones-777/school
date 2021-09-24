@@ -72,13 +72,27 @@ class CoordinateSystem(Canvas):
 	def __init__(self, window):
 		self.window = window
 
+	#function to plot colored points on the Tkinter canvas
 	def plotPoints(self, iterations):
-		x = Canvas(self.window, bg="white", height = 800, width = 800)
-		for i in range(10):
-			x,y = random.randint(1,800),random.randint(1,800)
-			x.create_oval(0,0,0,0, outline="black", fill="red", padx=x, pady=y)
+		colors = ["Red", "Yellow", "Green", "Black", "Pink", "Blue", "Orange", "Purple"]
 
-		x.pack()
+		#setting our canvas to the original tkinter window and giving it client specified parameters
+		C = Canvas(self.window, bg="white", height = 800, width = 800)
+		
+		for i in range(iterations):
+			
+			#choosing a new random color through each iteration of our number of points
+			color = random.choice(colors)
+			
+			#assinging random X and Y values to be used in our point object
+			BasePointX = random.randint(1,800)
+			BasePointY = random.randint(1,800)
+			
+			#creating a new Point object to hold our shapes x and y values
+			P= Point(BasePointX, BasePointY)
+			C.create_oval(P.x, P.y, P.x, P.y, outline=color, fill=color)
+		#packing our pixel to the tkinter string
+		C.pack()
 		
 	# write your code for the coordinate system class here (and subsequently remove this comment)
 
